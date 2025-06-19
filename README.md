@@ -116,7 +116,11 @@ gcc -c solutions/flowchart_impl solutions/flowchart_impl.c
 Reflection:
 
 * **Explain how each flowchart node maps to your C code.**
-
+<summary>Each flowchart node directly maps to a specific part of the C function: </summary>
+  <summary> -the initialization node sets result = 1, </summary>
+   <summary>-the loop node corresponds to the for loop over i,</summary>
+  <summary> -the decision nodes check if i is even and whether result > 1000, </summary>
+  <summary> -and the process nodes perform addition, multiplication, subtraction, and printing — all exactly as shown in the algorithm structure.</summary>
 ---
 
 ### Task 3: Code-to-Flowchart
@@ -156,14 +160,49 @@ Reflection:
 3. For each function, draw a **Mermaid** flowchart capturing loops, branches, and switch logic. Include your Mermaid code in a Markdown file under `solutions/`.
 
 **Example Skeleton:**
+**Funktion 1:**
 
 ```mermaid
 graph TD
-  A[Start] --> B[Initialize]
-  B --> C{Condition}
-  ...
-```
+  A[Start: x] --> B[Initialize result = 1]
+  B --> C{i = 1 to x?}
+  C -- No --> D[Return result]
+  C -- Yes --> E{i % 2 == 0?}
+  E -- Yes --> F[result += i]
+  E -- No --> G[result *= i]
+  F --> H[result > 1000?]
+  G --> H
+  H -- Yes --> I[result -= 100]
+  H -- No --> J[Increment i]
+  I --> J
+  J --> C
 
+```
+**Example Skeleton:**
+**Funktion 2:**
+```mermaid
+graph TD
+ A[Start] --> B[Set state = 0]
+    B --> C[i = 0 to len-1]
+    C --> D{arr i < 0?}
+    D -- Yes --> E[state = -1]
+    D -- No --> F{arr i == 0?}
+    F -- Yes --> G[state = 0]
+    F -- No  --> H[state = 1]
+    E --> I{state == 1?}
+    G --> I
+    H --> I
+    I -- Yes --> J[break]
+    I -- No  --> K{Increment i}
+    K -- Yes --> C
+    K -- No  --> L[After loop]
+    J --> L
+    L --> M{state == 1?}
+    M -- Yes --> N[Return true]
+    M -- No  --> O[Return false]
+    N --> P[End]
+    O --> P
+```
 ---
 
 **Remember:** Stop after **90 minutes** and record where you stopped.
